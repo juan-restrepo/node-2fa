@@ -27,18 +27,10 @@ function generateToken(secret, opt) {
 function verifyToken(secret, token, opt) {
     if (!secret || !secret.length || !token || !token.length) return null;
     opt = opt || {};
-    var window = opt.window || 4;
-    var counter = opt.counter || 0;
-    var shift = opt.shift || 1;
     var unformatted = secret.replace(/\W+/g, '').toUpperCase();
     var bin = b32.decode(unformatted);
     token = token.replace(/\W+/g, '');
-    return notp.totp.verify(token, bin, {
-        window,
-        counter,
-        shift,
-        time: 30,
-    });
+    return notp.totp.verify(token, bin, opt);
 };
 
 module.exports = exports = {
