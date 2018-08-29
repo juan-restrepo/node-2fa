@@ -24,7 +24,7 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/jeremyscalpello/node-2fa#readme",
   "dependencies": {
-    "notp": "git+https://github.com/juan-restrepo/notp.git#c63ab16f4f0a76707c5353dea8989708d4dc307c",
+    "notp": "git+https://github.com/juan-restrepo/notp.git",
     "thirty-two": "0.0.2"
   }
 }
