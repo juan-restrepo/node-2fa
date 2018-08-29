@@ -15,25 +15,22 @@ function generateSecret(options) {
     };
 };
 
-function generateToken(secret) {
+function generateToken(secret, opt) {
     if (!secret || !secret.length) return null;
     var unformatted = secret.replace(/\W+/g, '').toUpperCase();
     var bin = b32.decode(unformatted);
     return {
-        token: notp.totp.gen(bin)
+        token: notp.totp.gen(bin, opt),
     };
 };
 
-function verifyToken(secret, token, window) {
+function verifyToken(secret, token, opt) {
     if (!secret || !secret.length || !token || !token.length) return null;
-    if (!window) window = 4;
+    opt = opt || {};
     var unformatted = secret.replace(/\W+/g, '').toUpperCase();
     var bin = b32.decode(unformatted);
     token = token.replace(/\W+/g, '');
-    return notp.totp.verify(token, bin, {
-        window: window,
-        time: 30
-    });
+    return notp.totp.verify(token, bin, opt);
 };
 
 module.exports = exports = {
